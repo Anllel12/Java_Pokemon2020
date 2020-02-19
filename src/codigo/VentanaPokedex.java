@@ -69,7 +69,7 @@ public class VentanaPokedex extends javax.swing.JFrame {
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://192.168.111.132/test", "root", "");
+            conexion = DriverManager.getConnection("jdbc:mysql://192.168.111.135/test", "root", "");
             estado = conexion.createStatement();
         }
         catch (Exception e){
@@ -139,10 +139,11 @@ public class VentanaPokedex extends javax.swing.JFrame {
             }
         });
         getContentPane().add(siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 680, -1, -1));
+
+        nombrePokemon.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(nombrePokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 330, 101, 24));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Pokedex.jpg"))); // NOI18N
-        fondo.setText("jLabel1");
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
