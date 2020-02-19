@@ -17,6 +17,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -38,6 +39,8 @@ public class VentanaPokedex extends javax.swing.JFrame {
     Statement estado;
     ResultSet resultadoConsulta;
     Connection conexion;
+    
+    HashMap<String, Pokemon> listaPokemon=new HashMap();//estructura para guardar todo el contenido de la base de datos de golpe
     
     @Override
     public void paint (Graphics g){
@@ -71,6 +74,18 @@ public class VentanaPokedex extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             conexion = DriverManager.getConnection("jdbc:mysql://192.168.111.135/test", "root", "");
             estado = conexion.createStatement();
+            resultadoConsulta=estado.executeQuery("select * from pokemon");
+            while (resultadoConsulta.next()) {
+                Pokemon p=new Pokemon();
+                p.nombre=resultadoConsulta.getString("nombre");
+                p.especie=resultadoConsulta.getString("especie");
+                p.movimiento1=resultadoConsulta.getString("movimiento1");
+                p.peso=resultadoConsulta.getString("peso");
+                
+                listaPokemon.put(resultadoConsulta.getString("id"), p);//añado el pokemon al hashmap
+
+            }
+//recorremos el array del resultado uno a uno para ir cargasolo en el Hasmap
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -124,21 +139,24 @@ public class VentanaPokedex extends javax.swing.JFrame {
 
         getContentPane().add(imagenPokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
 
-        anterior.setText("<");
+        anterior.setBorderPainted(false);
+        anterior.setContentAreaFilled(false);
+        anterior.setOpaque(false);
         anterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 anteriorActionPerformed(evt);
             }
         });
-        getContentPane().add(anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 680, -1, -1));
+        getContentPane().add(anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 680, 30, 40));
 
-        siguiente.setText(">");
+        siguiente.setBorderPainted(false);
+        siguiente.setContentAreaFilled(false);
         siguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 siguienteActionPerformed(evt);
             }
         });
-        getContentPane().add(siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 680, -1, -1));
+        getContentPane().add(siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 680, 30, 40));
 
         nombrePokemon.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(nombrePokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 330, 101, 24));
@@ -150,34 +168,40 @@ public class VentanaPokedex extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteActionPerformed
-
-        pintaPokemon(contador);
-
-        try {
-            resultadoConsulta=estado.executeQuery("select * from pokemon where id=" + (contador+1));
-            if (resultadoConsulta.next()) {
-                nombrePokemon.setText(resultadoConsulta.getString(2));
-            }
-            else{
-                nombrePokemon.setText("Enhorabuena has conseguido un pokemon nuevo");
-            }
+        
+        pintaPokemon(contador);       
+        
+        Pokemon p=listaPokemon.get(String.valueOf(contador+1));
+        if(p!=null){
+            nombrePokemon.setText(p.nombre);
         }
-        catch (SQLException ex) {
-            System.out.println("No responde la Base de Datos");;
+        else{
+            nombrePokemon.setText("No hay datos");
         }
-
+        
         contador++;
         if (contador>=649){
-            contador=1;
+            contador=649;
         }
+        
     }//GEN-LAST:event_siguienteActionPerformed
 
     private void anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorActionPerformed
+        
+        pintaPokemon(contador);
+        
+        Pokemon p=listaPokemon.get(String.valueOf(contador+1));
+        if(p!=null){
+            nombrePokemon.setText(p.nombre);
+        }
+        else{
+            nombrePokemon.setText("No hay datos");
+        }
+        
         contador--;
         if (contador<=0){
             contador=0;
         }
-        pintaPokemon(contador);
     }//GEN-LAST:event_anteriorActionPerformed
 
     /**
