@@ -120,10 +120,20 @@ public class VentanaPokedex extends javax.swing.JFrame {
         anterior = new javax.swing.JButton();
         siguiente = new javax.swing.JButton();
         nombrePokemon = new javax.swing.JLabel();
+        especie = new javax.swing.JButton();
+        tipo = new javax.swing.JButton();
+        habilidad = new javax.swing.JButton();
+        habitat = new javax.swing.JButton();
+        altura = new javax.swing.JButton();
+        peso = new javax.swing.JButton();
+        preEvolucion = new javax.swing.JButton();
+        posEvolucion = new javax.swing.JButton();
+        descripcion = new javax.swing.JButton();
+        movimiento1 = new javax.swing.JButton();
+        movimiento2 = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1230, 869));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout imagenPokemonLayout = new javax.swing.GroupLayout(imagenPokemon);
@@ -141,7 +151,6 @@ public class VentanaPokedex extends javax.swing.JFrame {
 
         anterior.setBorderPainted(false);
         anterior.setContentAreaFilled(false);
-        anterior.setOpaque(false);
         anterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 anteriorActionPerformed(evt);
@@ -158,8 +167,64 @@ public class VentanaPokedex extends javax.swing.JFrame {
         });
         getContentPane().add(siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 680, 30, 40));
 
+        nombrePokemon.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         nombrePokemon.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(nombrePokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 330, 101, 24));
+        getContentPane().add(nombrePokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 310, 390, 80));
+
+        especie.setText("Especie");
+        especie.setBorderPainted(false);
+        especie.setContentAreaFilled(false);
+        getContentPane().add(especie, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 420, 90, 50));
+
+        tipo.setText("Tipo");
+        tipo.setBorderPainted(false);
+        tipo.setContentAreaFilled(false);
+        getContentPane().add(tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 420, 80, 50));
+
+        habilidad.setText("Habil");
+        habilidad.setBorderPainted(false);
+        habilidad.setContentAreaFilled(false);
+        getContentPane().add(habilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 420, 80, 50));
+
+        habitat.setText("Habitat");
+        habitat.setBorderPainted(false);
+        habitat.setContentAreaFilled(false);
+        getContentPane().add(habitat, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 420, 90, 50));
+
+        altura.setText("Altura");
+        altura.setBorderPainted(false);
+        altura.setContentAreaFilled(false);
+        getContentPane().add(altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 420, 80, 50));
+
+        peso.setText("Peso");
+        peso.setBorderPainted(false);
+        peso.setContentAreaFilled(false);
+        getContentPane().add(peso, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 480, 80, 50));
+
+        preEvolucion.setText("PreEvolucion");
+        preEvolucion.setBorderPainted(false);
+        preEvolucion.setContentAreaFilled(false);
+        getContentPane().add(preEvolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 480, 160, 50));
+
+        posEvolucion.setText("PosEvolucion");
+        posEvolucion.setBorderPainted(false);
+        posEvolucion.setContentAreaFilled(false);
+        getContentPane().add(posEvolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 480, 160, 50));
+
+        descripcion.setText("Descripcion");
+        descripcion.setBorderPainted(false);
+        descripcion.setContentAreaFilled(false);
+        getContentPane().add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 710, 210, 50));
+
+        movimiento1.setText("Movimiento 1");
+        movimiento1.setBorderPainted(false);
+        movimiento1.setContentAreaFilled(false);
+        getContentPane().add(movimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 570, 130, 50));
+
+        movimiento2.setText("Movimiento 2");
+        movimiento2.setBorderPainted(false);
+        movimiento2.setContentAreaFilled(false);
+        getContentPane().add(movimiento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 570, 130, 50));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Pokedex.jpg"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -240,10 +305,21 @@ public class VentanaPokedex extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton altura;
     private javax.swing.JButton anterior;
+    private javax.swing.JButton descripcion;
+    private javax.swing.JButton especie;
     private javax.swing.JLabel fondo;
+    private javax.swing.JButton habilidad;
+    private javax.swing.JButton habitat;
     private javax.swing.JPanel imagenPokemon;
+    private javax.swing.JButton movimiento1;
+    private javax.swing.JButton movimiento2;
     private javax.swing.JLabel nombrePokemon;
+    private javax.swing.JButton peso;
+    private javax.swing.JButton posEvolucion;
+    private javax.swing.JButton preEvolucion;
     private javax.swing.JButton siguiente;
+    private javax.swing.JButton tipo;
     // End of variables declaration//GEN-END:variables
 }
