@@ -72,7 +72,7 @@ public class VentanaPokedex extends javax.swing.JFrame {
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://192.168.111.133/test", "root", "");
+            conexion = DriverManager.getConnection("jdbc:mysql://192.168.111.137/test", "root", "");
             estado = conexion.createStatement();
             resultadoConsulta=estado.executeQuery("select * from pokemon");
             
@@ -80,7 +80,8 @@ public class VentanaPokedex extends javax.swing.JFrame {
                 Pokemon p=new Pokemon();
                 p.nombre=resultadoConsulta.getString("nombre");
                 p.especie=resultadoConsulta.getString("especie");
-                p.tipo=resultadoConsulta.getString("tipo1");
+                p.tipo1=resultadoConsulta.getString("tipo1");
+                p.tipo2=resultadoConsulta.getString("tipo2");
                 p.habilidad=resultadoConsulta.getString("habilidad");
                 p.habitat=resultadoConsulta.getString("habitat");
                 p.altura=resultadoConsulta.getString("altura");
@@ -348,7 +349,7 @@ public class VentanaPokedex extends javax.swing.JFrame {
         Pokemon p=listaPokemon.get(String.valueOf(contador));
         
         if(p!=null){
-            nombrePokemon.setText(p.tipo);
+            nombrePokemon.setText(p.tipo1 + " y " + p.tipo2);
         }
         else{
             nombrePokemon.setText("No hay datos");

@@ -13,7 +13,8 @@ public class Pokemon {
     
     public String nombre="";
     public String especie="";
-    public String tipo="";
+    public String tipo1="";
+    public String tipo2="";
     public String habilidad="";
     public String habitat="";
     public String altura="";  
