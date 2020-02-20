@@ -72,20 +72,28 @@ public class VentanaPokedex extends javax.swing.JFrame {
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://192.168.111.135/test", "root", "");
+            conexion = DriverManager.getConnection("jdbc:mysql://192.168.111.133/test", "root", "");
             estado = conexion.createStatement();
             resultadoConsulta=estado.executeQuery("select * from pokemon");
-            while (resultadoConsulta.next()) {
+            
+            while (resultadoConsulta.next()) {//recorremos el array del resultado uno a uno para ir cargadolo en el Hasmap
                 Pokemon p=new Pokemon();
                 p.nombre=resultadoConsulta.getString("nombre");
                 p.especie=resultadoConsulta.getString("especie");
-                p.movimiento1=resultadoConsulta.getString("movimiento1");
+                p.tipo=resultadoConsulta.getString("tipo1");
+                p.habilidad=resultadoConsulta.getString("habilidad");
+                p.habitat=resultadoConsulta.getString("habitat");
+                p.altura=resultadoConsulta.getString("altura");
                 p.peso=resultadoConsulta.getString("peso");
+                p.preEvolucion=resultadoConsulta.getString("preEvolucion");
+                p.posEvolucion=resultadoConsulta.getString("posEvolucion");
+                p.movimiento1=resultadoConsulta.getString("movimiento1");
+                p.movimiento2=resultadoConsulta.getString("movimiento2");
+                p.descripcion=resultadoConsulta.getString("descripcion");
                 
                 listaPokemon.put(resultadoConsulta.getString("id"), p);//añado el pokemon al hashmap
 
             }
-//recorremos el array del resultado uno a uno para ir cargasolo en el Hasmap
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -174,56 +182,111 @@ public class VentanaPokedex extends javax.swing.JFrame {
         especie.setText("Especie");
         especie.setBorderPainted(false);
         especie.setContentAreaFilled(false);
+        especie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                especieActionPerformed(evt);
+            }
+        });
         getContentPane().add(especie, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 420, 90, 50));
 
         tipo.setText("Tipo");
         tipo.setBorderPainted(false);
         tipo.setContentAreaFilled(false);
+        tipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoActionPerformed(evt);
+            }
+        });
         getContentPane().add(tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 420, 80, 50));
 
         habilidad.setText("Habil");
         habilidad.setBorderPainted(false);
         habilidad.setContentAreaFilled(false);
+        habilidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                habilidadActionPerformed(evt);
+            }
+        });
         getContentPane().add(habilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 420, 80, 50));
 
         habitat.setText("Habitat");
         habitat.setBorderPainted(false);
         habitat.setContentAreaFilled(false);
+        habitat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                habitatActionPerformed(evt);
+            }
+        });
         getContentPane().add(habitat, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 420, 90, 50));
 
         altura.setText("Altura");
         altura.setBorderPainted(false);
         altura.setContentAreaFilled(false);
+        altura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alturaActionPerformed(evt);
+            }
+        });
         getContentPane().add(altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 420, 80, 50));
 
         peso.setText("Peso");
         peso.setBorderPainted(false);
         peso.setContentAreaFilled(false);
+        peso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesoActionPerformed(evt);
+            }
+        });
         getContentPane().add(peso, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 480, 80, 50));
 
         preEvolucion.setText("PreEvolucion");
         preEvolucion.setBorderPainted(false);
         preEvolucion.setContentAreaFilled(false);
+        preEvolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                preEvolucionActionPerformed(evt);
+            }
+        });
         getContentPane().add(preEvolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 480, 160, 50));
 
         posEvolucion.setText("PosEvolucion");
         posEvolucion.setBorderPainted(false);
         posEvolucion.setContentAreaFilled(false);
+        posEvolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posEvolucionActionPerformed(evt);
+            }
+        });
         getContentPane().add(posEvolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 480, 160, 50));
 
         descripcion.setText("Descripcion");
         descripcion.setBorderPainted(false);
         descripcion.setContentAreaFilled(false);
+        descripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descripcionActionPerformed(evt);
+            }
+        });
         getContentPane().add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 710, 210, 50));
 
         movimiento1.setText("Movimiento 1");
         movimiento1.setBorderPainted(false);
         movimiento1.setContentAreaFilled(false);
+        movimiento1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                movimiento1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(movimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 570, 130, 50));
 
         movimiento2.setText("Movimiento 2");
         movimiento2.setBorderPainted(false);
         movimiento2.setContentAreaFilled(false);
+        movimiento2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                movimiento2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(movimiento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 570, 130, 50));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Pokedex.jpg"))); // NOI18N
@@ -237,6 +300,7 @@ public class VentanaPokedex extends javax.swing.JFrame {
         pintaPokemon(contador);       
         
         Pokemon p=listaPokemon.get(String.valueOf(contador+1));
+        
         if(p!=null){
             nombrePokemon.setText(p.nombre);
         }
@@ -268,6 +332,127 @@ public class VentanaPokedex extends javax.swing.JFrame {
             contador=0;
         }
     }//GEN-LAST:event_anteriorActionPerformed
+
+    private void especieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_especieActionPerformed
+        Pokemon p=listaPokemon.get(String.valueOf(contador));
+        
+        if(p!=null){
+            nombrePokemon.setText(p.especie);
+        }
+        else{
+            nombrePokemon.setText("No hay datos");
+        }
+    }//GEN-LAST:event_especieActionPerformed
+
+    private void tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoActionPerformed
+        Pokemon p=listaPokemon.get(String.valueOf(contador));
+        
+        if(p!=null){
+            nombrePokemon.setText(p.tipo);
+        }
+        else{
+            nombrePokemon.setText("No hay datos");
+        }
+    }//GEN-LAST:event_tipoActionPerformed
+
+    private void habilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habilidadActionPerformed
+        Pokemon p=listaPokemon.get(String.valueOf(contador));
+        
+        if(p!=null){
+            nombrePokemon.setText(p.habilidad);
+        }
+        else{
+            nombrePokemon.setText("No hay datos");
+        }
+    }//GEN-LAST:event_habilidadActionPerformed
+
+    private void habitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habitatActionPerformed
+        Pokemon p=listaPokemon.get(String.valueOf(contador));
+        
+        if(p!=null){
+            nombrePokemon.setText(p.habitat);
+        }
+        else{
+            nombrePokemon.setText("No hay datos");
+        }
+    }//GEN-LAST:event_habitatActionPerformed
+
+    private void alturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alturaActionPerformed
+        Pokemon p=listaPokemon.get(String.valueOf(contador));
+        
+        if(p!=null){
+            nombrePokemon.setText(p.altura);
+        }
+        else{
+            nombrePokemon.setText("No hay datos");
+        }
+    }//GEN-LAST:event_alturaActionPerformed
+
+    private void pesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesoActionPerformed
+        Pokemon p=listaPokemon.get(String.valueOf(contador));
+        
+        if(p!=null){
+            nombrePokemon.setText(p.peso);
+        }
+        else{
+            nombrePokemon.setText("No hay datos");
+        }
+    }//GEN-LAST:event_pesoActionPerformed
+
+    private void preEvolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preEvolucionActionPerformed
+        Pokemon p=listaPokemon.get(String.valueOf(contador));
+        
+        if(p!=null){
+            nombrePokemon.setText(p.preEvolucion);
+        }
+        else{
+            nombrePokemon.setText("No hay datos");
+        }
+    }//GEN-LAST:event_preEvolucionActionPerformed
+
+    private void posEvolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posEvolucionActionPerformed
+        Pokemon p=listaPokemon.get(String.valueOf(contador));
+        
+        if(p!=null){
+            nombrePokemon.setText(p.posEvolucion);
+        }
+        else{
+            nombrePokemon.setText("No hay datos");
+        }
+    }//GEN-LAST:event_posEvolucionActionPerformed
+
+    private void movimiento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movimiento1ActionPerformed
+        Pokemon p=listaPokemon.get(String.valueOf(contador));
+        
+        if(p!=null){
+            nombrePokemon.setText(p.movimiento1);
+        }
+        else{
+            nombrePokemon.setText("No hay datos");
+        }
+    }//GEN-LAST:event_movimiento1ActionPerformed
+
+    private void movimiento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movimiento2ActionPerformed
+        Pokemon p=listaPokemon.get(String.valueOf(contador));
+        
+        if(p!=null){
+            nombrePokemon.setText(p.movimiento2);
+        }
+        else{
+            nombrePokemon.setText("No hay datos");
+        }
+    }//GEN-LAST:event_movimiento2ActionPerformed
+
+    private void descripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descripcionActionPerformed
+        Pokemon p=listaPokemon.get(String.valueOf(contador));
+        
+        if(p!=null){
+            nombrePokemon.setText(p.descripcion);
+        }
+        else{
+            nombrePokemon.setText("No hay datos");
+        }
+    }//GEN-LAST:event_descripcionActionPerformed
 
     /**
      * @param args the command line arguments

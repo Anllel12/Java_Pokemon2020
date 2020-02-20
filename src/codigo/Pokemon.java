@@ -13,6 +13,15 @@ public class Pokemon {
     
     public String nombre="";
     public String especie="";
-    public String movimiento1="";
+    public String tipo="";
+    public String habilidad="";
+    public String habitat="";
+    public String altura="";  
     public String peso="";
+    public String preEvolucion="";
+    public String posEvolucion="";
+    public String movimiento1="";
+    public String movimiento2="";
+    public String descripcion="";
+    
 }
